@@ -287,7 +287,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 - **GitHub Issues:** [Report bugs or request features](https://github.com/YOUR_USERNAME/xenone/issues)
 - **Documentation:** [Full docs](https://github.com/samridhi-narwade/Xenone_Prototype/wiki)
-- **Demo Video:** [Watch on YouTube](YOUR_VIDEO_LINK)
+- **Demo Video:** [Watch on YouTube](https://youtu.be/6B1hJReFqJ8)
 
 ---
 

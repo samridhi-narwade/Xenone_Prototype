@@ -1,10 +1,10 @@
 # Xenone Discord Bot - Python Dependencies
+# Note: torch is installed separately in Dockerfile with CPU-only flag
 
 # Discord API
 discord.py>=2.3.2
 
-# AI/ML Libraries — CPU-only torch (keeps image small for Railway deployment)
-torch>=2.1.0 --index-url https://download.pytorch.org/whl/cpu
+# AI/ML Libraries
 transformers>=4.36.0
 accelerate>=0.25.0
 

@@ -1,0 +1,15 @@
+# Exclude everything that shouldn't be in the image
+.env
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+venv/
+.venv/
+env/
+*.md
+chroma_db/
+.DS_Store
+Thumbs.db
+nixpacks.toml

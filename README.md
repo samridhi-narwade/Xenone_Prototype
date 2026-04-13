@@ -10,7 +10,7 @@
 [![Railway](https://img.shields.io/badge/Hosted%20on-Railway-0B0D0E?style=flat-square&logo=railway&logoColor=white)](https://railway.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-*Built for Ideathon April 2026 — Team Xenone*
+
 
 </div>
 

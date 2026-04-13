@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🤖 Xenone
+# Xenone
 ### AI-Powered Knowledge Hub for Discord
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)

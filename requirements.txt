@@ -3,15 +3,15 @@
 # Discord API
 discord.py>=2.3.2
 
-# AI/ML Libraries
+# AI/ML Libraries — CPU-only torch (keeps image small for Railway deployment)
+torch>=2.1.0 --index-url https://download.pytorch.org/whl/cpu
 transformers>=4.36.0
-torch>=2.1.0
 accelerate>=0.25.0
 
 # Vector Database
 chromadb>=0.4.22
 
-# PDF Generation (Feature 6)
+# PDF Generation
 fpdf2>=2.7.6
 
 # Utilities

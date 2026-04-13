@@ -1,298 +1,217 @@
-# Xenone - AI Knowledge Hub for Student Clubs
+<div align="center">
 
-[![AMD Slingshot Hackathon 2025](https://img.shields.io/badge/AMD%20Slingshot-2025-red)](https://amd.com)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# 🤖 Xenone
+### AI-Powered Knowledge Hub for Discord
 
-> **AI-powered knowledge management system that captures, stores, and surfaces institutional knowledge for student organizations with high turnover.**
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![discord.py](https://img.shields.io/badge/discord.py-2.3%2B-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discordpy.readthedocs.io)
+[![TinyLlama](https://img.shields.io/badge/AI-TinyLlama%201.1B-ff6b35?style=flat-square&logo=huggingface&logoColor=white)](https://huggingface.co/TinyLlama)
+[![ChromaDB](https://img.shields.io/badge/VectorDB-ChromaDB-orange?style=flat-square)](https://trychroma.com)
+[![Railway](https://img.shields.io/badge/Hosted%20on-Railway-0B0D0E?style=flat-square&logo=railway&logoColor=white)](https://railway.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
----
+*Built for Ideathon April 2026 — Team Xenone*
 
-## 🎯 Problem Statement
-
-**70% of team knowledge is tacit** (exists only in people's heads) and **80% is lost during handoffs** between graduating batches. Xenone solves this by:
-
-1. **Passive Capture** - 📌 emoji reaction = instant knowledge capture
-2. **AI Q&A** - Confidence-scored answers grounded in team history
-3. **Exit Briefs** - One-click handoff documents for graduating members
+</div>
 
 ---
 
-## 🚀 Quick Start
+## 💡 What is Xenone?
 
-### Run the Prototype (Google Colab)
+Xenone turns your Discord server into a **living knowledge base**. Instead of important messages getting buried in chat, Xenone lets your team capture, tag, search, and export knowledge — all powered by a local AI model running right inside the bot.
 
-**Fastest way to see Xenone in action:**
-
-1. Open our Colab notebook: [Xenone Prototype](https://colab.research.google.com/drive/1VquMrOaindH4G0jlQHQcYA6TGuFnjpy2)
-2. Click `Runtime` → `Run all`
-3. Wait 3-5 minutes for model download
-4. See demo queries with confidence scoring
-
-### Run Locally
-
-```bash
-# Clone repository
-git clone https://github.com/YOUR_USERNAME/xenone.git
-cd xenone
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the knowledge base demo
-python xenone_core.py
-```
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────┐
-│  Slack/Discord  │ ← User Interface
-└────────┬────────┘
-         │ 📌 Emoji reactions
-         │ /ask commands
-         ↓
-┌─────────────────┐
-│   Slack Bot     │ ← Event Handler
-│  (Python SDK)   │
-└────────┬────────┘
-         │
-         ↓
-┌─────────────────┐
-│  RAG Pipeline   │ ← Core Logic
-│  • Embedding    │
-│  • Retrieval    │
-│  • Generation   │
-└────────┬────────┘
-         │
-    ┌────┴────┐
-    ↓         ↓
-┌─────────┐ ┌──────────┐
-│ChromaDB │ │ TinyLlama│ ← AI Components
-│ Vector  │ │   1.1B   │
-│   DB    │ │   LLM    │
-└─────────┘ └──────────┘
-```
+React with 📌 to save a message. Use `/ask` to get answers. Export everything to PDF with `/export_pdf`. No external knowledge base tool needed.
 
 ---
 
 ## ✨ Features
 
-### 1. Passive Knowledge Capture
-- React with 📌 emoji to any Slack/Discord message
-- Bot automatically captures, embeds, and stores
-- Zero documentation burden on team members
-
-### 2. AI Q&A with Confidence Scoring
-```
-User: /ask why did we switch vendors?
-
-Xenone: 🟢 HIGH CONFIDENCE (3 sources)
-
-We switched to PrintPro because they offer 30% cost 
-savings and 3-day turnaround vs 7 days from previous 
-vendor. Decision made Dec 14, 2024.
-
-Sources: 
-1. Message from Sarah Kumar in #marketing...
-2. Message from Priya Sharma in #budget-planning...
-3. Message from Team Lead in #decisions...
-```
-
-**Confidence Levels:**
-- 🟢 **HIGH** (3+ sources): Multiple team discussions found
-- 🟡 **MEDIUM** (1-2 sources): Limited documentation
-- 🔴 **LOW** (0 sources): No information found - flag to document
-
-### 3. Exit Brief Generator
-One-click PDF generation containing:
-- ✅ Key Decisions Made
-- ✅ Lessons Learned  
-- ✅ Warnings & Pitfalls
-- ✅ Unfinished Work
+| # | Feature | How to use |
+|---|---|---|
+| 1 | **📌 Reaction Capture** | React to any message with 📌 to save it to the knowledge base |
+| 2 | **🤖 AI-Powered Q&A** | `/ask [question]` — queries captured messages via TinyLlama with confidence scoring |
+| 3 | **📄 Exit Brief** | `/exit_brief` — rich Discord embed with a full summary of captured knowledge |
+| 4 | **🏷️ Auto-Tagging** | Messages are automatically categorized: `decision` ✅ `lesson` 💡 `warning` ⚠️ `action` 🎯 `question` ❓ |
+| 5 | **📊 Analytics Dashboard** | `/analytics` — most-asked questions, knowledge gaps, and tag distribution |
+| 6 | **📄 PDF Export** | `/export_pdf` — generates a real, downloadable PDF report of all captured knowledge |
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Slash Commands
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **LLM** | TinyLlama 1.1B | Text generation & reasoning |
-| **Framework** | Hugging Face Transformers | Model inference |
-| **Vector DB** | ChromaDB | Semantic search |
-| **Bot SDK** | Slack Bolt (Python) | Event handling |
-| **Deployment** | Google Colab (prototype) | GPU access |
-| **Planned** | AMD MI300X + ROCm | Production deployment |
+| Command | Description |
+|---|---|
+| `/ask [question]` | Ask the AI a question based on captured server messages |
+| `/exit_brief` | Generate a Discord embed summary of all knowledge |
+| `/export_pdf` | Download a full PDF report of the knowledge base |
+| `/analytics` | View most-asked questions and knowledge gaps |
+| `/stats` | View knowledge base statistics |
+| `/help` | Show all commands and usage guide |
 
 ---
 
-## 📊 How Confidence Scoring Works
+## 📋 Requirements
 
-```python
-# Simplified logic
-results = vector_db.query(question, n=3)
-num_sources = count_relevant_sources(results, threshold=0.7)
+- Python **3.10+**
+- A [Discord Developer Application](https://discord.com/developers/applications) with a Bot token
+- **Message Content Intent** enabled in the Discord Developer Portal
+- ~3–4 GB RAM (for TinyLlama model loading)
+- `pip` for installing dependencies
 
-if num_sources >= 3:
-    confidence = "HIGH"
-elif num_sources >= 1:
-    confidence = "MEDIUM"
-else:
-    confidence = "LOW"
+---
+
+## 🚀 Local Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/xenone.git
+cd xenone
 ```
 
-**Key Innovation:** Unlike ChatGPT/Claude which answer confidently even when guessing, Xenone explicitly flags uncertainty and prompts documentation.
+### 2. Create a virtual environment
+
+```bash
+python -m venv venv
+
+# Activate:
+source venv/bin/activate      # macOS / Linux
+venv\Scripts\activate         # Windows
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+> ⚠️ `torch` and `transformers` are large packages. The first install may take several minutes.
+
+### 4. Configure environment variables
+
+Create a `.env` file in the root directory:
+
+```env
+DISCORD_BOT_TOKEN=your_bot_token_here
+```
+
+> ⚠️ **Never** commit your `.env` file. Add it to `.gitignore`.
+
+### 5. Enable Discord Intents
+
+In the [Discord Developer Portal](https://discord.com/developers/applications):
+1. Go to your app → **Bot** tab
+2. Enable **Message Content Intent**
+3. Enable **Server Members Intent**
+
+### 6. Run the bot
+
+```bash
+python xenone_discord_bot.py
+```
+
+> 🕐 On first run, TinyLlama (~2GB) will be downloaded. This takes 2–3 minutes. Subsequent starts are faster.
 
 ---
 
-## 💡 Why Xenone?
-
-| Problem | Traditional Solution | Xenone Solution |
-|---------|---------------------|-----------------|
-| Knowledge capture | Manual documentation | 📌 emoji = captured |
-| Finding information | Search 6 months of Slack | Semantic AI search |
-| Handoffs | "Figure it out yourself" | Auto-generated exit brief |
-| Trust | AI hallucinates answers | Confidence scores + sources |
-| Cost | $28-38/user/month | ~$50/month for entire club |
-
----
-
-## 🎓 Built For
-
-- **Student Clubs** - High turnover, informal structure
-- **Project Teams** - Short-term with critical knowledge
-- **NGOs** - Volunteer organizations with limited budgets
-- **Startups** - Early-stage teams documenting as they grow
-
----
-
-## 📁 Repository Structure
+## 📁 Project Structure
 
 ```
 xenone/
-├── README.md                    # This file
-├── requirements.txt             # Python dependencies
-├── xenone_core.py              # Core RAG implementation
-├── slack_bot/
-│   ├── bot.py                  # Slack integration
-│   ├── .env.example            # Environment variables template
-│   └── requirements.txt        # Bot-specific dependencies
-├── dashboard/
-│   ├── app.py                  # Streamlit dashboard (planned)
-│   └── templates/              # Exit brief templates
-├── notebooks/
-│   └── xenone_prototype.ipynb  # Google Colab notebook
-├── docs/
-│   ├── ARCHITECTURE.md         # Technical deep dive
-│   ├── DEPLOYMENT.md           # AMD Cloud migration guide
-│   └── API.md                  # API documentation
-└── tests/
-    ├── test_rag.py             # RAG pipeline tests
-    └── test_confidence.py      # Confidence scoring tests
+├── xenone_discord_bot.py    # Main bot — all features in one file
+├── requirements.txt         # Python dependencies
+├── .env                     # Your secrets (DO NOT COMMIT)
+├── .env.example             # Template for environment variables
+├── .gitignore
+└── Procfile                 # For Railway / cloud deployment
 ```
 
 ---
 
-## 🚀 Deployment
+## 🏷️ Auto-Tagging System
 
-### Prototype (Current)
-- **Platform:** Google Colab
-- **GPU:** NVIDIA T4 (free tier)
-- **Model:** TinyLlama 1.1B
-- **Cost:** $0
+When a message is captured with 📌, Xenone automatically analyzes the content and assigns one or more tags using keyword pattern matching:
 
-### Production (Planned)
-- **Platform:** AMD Developer Cloud
-- **GPU:** MI300X (192GB HBM3)
-- **Model:** Llama 3 70B
-- **Benefits:**
-  - 12x more memory
-  - Private deployment
-  - No API costs
-  - Data sovereignty
-
-**Migration Path:** Code is hardware-agnostic. Change 3 lines:
-```python
-# Before (Colab)
-model = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
-device = "cuda"
-
-# After (AMD Cloud)
-model = "meta-llama/Llama-3-70b-chat"
-device = "rocm"
-```
+| Tag | Emoji | Triggered by keywords like… |
+|---|---|---|
+| `decision` | ✅ | *"we decided"*, *"approved"*, *"finalized"*, *"go with"* |
+| `lesson` | 💡 | *"learned"*, *"retrospective"*, *"next time"*, *"takeaway"* |
+| `warning` | ⚠️ | *"bug"*, *"avoid"*, *"risk"*, *"don't"*, *"deprecated"* |
+| `action` | 🎯 | *"todo"*, *"assigned to"*, *"need to"*, *"action item"* |
+| `question` | ❓ | Messages ending with `?` or starting with *why / how / what* |
+| `general` | 📌 | Fallback when no other tag matches |
 
 ---
 
-## 📈 Roadmap
+## 🤖 How the AI Works
 
-### Phase 1: Prototype ✅ (Completed)
-- [x] RAG pipeline with ChromaDB
-- [x] Confidence scoring
-- [x] Demo knowledge base
-- [x] Colab deployment
+Xenone uses **TinyLlama 1.1B Chat** (a lightweight open-source LLM) to answer questions. When you run `/ask`:
 
-### Phase 2: Slack Integration (In Progress)
-- [ ] Emoji capture bot
-- [ ] /ask slash command
-- [ ] Socket mode connection
-- [ ] Authentication flow
+1. ChromaDB finds the top 5 most relevant captured messages via semantic search
+2. Those messages become the context for TinyLlama
+3. TinyLlama generates an answer grounded in your server's own captured knowledge
+4. A **confidence score** is shown based on how many relevant sources were found
 
-### Phase 3: Production Features
-- [ ] Exit brief PDF generator
-- [ ] Discord integration
-- [ ] Document upload & analysis
-- [ ] Multi-club support
-
-### Phase 4: AMD Migration
-- [ ] Deploy to AMD Developer Cloud
-- [ ] Benchmark MI300X vs T4
-- [ ] Load Llama 3 70B model
-- [ ] Scale testing
+| Sources found | Confidence |
+|---|---|
+| 3 or more | 🟢 HIGH |
+| 1–2 | 🟡 MEDIUM |
+| 0 | 🔴 LOW |
 
 ---
 
-## 🏆 AMD Slingshot Hackathon 2025
+## 📄 PDF Export
 
-**Team:** Xenone  
-**Leader:** Samridhi  
-**Problem Category:** Team knowledge hubs that capture tacit know-how
-
-**Why AMD?**
-- Designed for MI300X's 192GB unified memory
-- ROCm open-source ecosystem alignment
-- Private on-premise deployment for student data
-- Cost-effective for educational institutions
+`/export_pdf` generates a structured PDF containing:
+- Cover page with server name and generation date
+- Summary: total messages, unique contributors, date range
+- Knowledge breakdown by category (tag)
+- All captured messages grouped by tag, with author, channel, and timestamp
 
 ---
 
-## 📄 License
+## ⚙️ Dependencies
 
-MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- AMD Developer Cloud for GPU infrastructure
-- Hugging Face for model hosting
-- Google Colab for prototyping environment
-- Slack API for integration support
-
----
-
-## 📞 Contact
-
-- **GitHub Issues:** [Report bugs or request features](https://github.com/YOUR_USERNAME/xenone/issues)
-- **Documentation:** [Full docs](https://github.com/samridhi-narwade/Xenone_Prototype/wiki)
-- **Demo Video:** [Watch on YouTube](https://youtu.be/6B1hJReFqJ8)
+| Package | Purpose |
+|---|---|
+| `discord.py >= 2.3.2` | Discord bot framework |
+| `transformers >= 4.36.0` | TinyLlama AI model |
+| `torch >= 2.1.0` | AI inference engine |
+| `accelerate >= 0.25.0` | Optimized model loading |
+| `chromadb >= 0.4.22` | In-memory vector database |
+| `fpdf2 >= 2.7.6` | PDF generation |
+| `python-dotenv >= 1.0.0` | `.env` file loading |
 
 ---
 
-## 🌟 Star Us!
+## ⚠️ Known Limitations
 
-If Xenone helps your student club preserve knowledge, give us a ⭐️ on GitHub!
+- **ChromaDB is in-memory** — the knowledge base resets when the bot restarts. For persistence across restarts, replace `chromadb.Client()` with `chromadb.PersistentClient(path="./chroma_db")` and mount a Railway volume.
+- **TinyLlama requires ~3–4 GB RAM** — ensure your hosting plan has enough memory.
+- **First startup is slow** — model download and loading takes 2–5 minutes.
 
-**Built with ❤️ for student communities by Team Xenone**
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first.
+
+1. Fork the repo
+2. Create your branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for details.
+
+---
+
+<div align="center">
+
+Built with ❤️ by **Team Xenone** · Ideathon April 2026
+
+</div>

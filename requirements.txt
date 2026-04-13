@@ -1,0 +1,18 @@
+# Xenone Discord Bot - Python Dependencies
+
+# Discord API
+discord.py>=2.3.2
+
+# AI/ML Libraries
+transformers>=4.36.0
+torch>=2.1.0
+accelerate>=0.25.0
+
+# Vector Database
+chromadb>=0.4.22
+
+# PDF Generation (Feature 6)
+fpdf2>=2.7.6
+
+# Utilities
+python-dotenv>=1.0.0

@@ -1,10 +1,13 @@
-# Xenone Discord Bot - Python Dependencies
-# Note: torch is installed separately in Dockerfile with CPU-only flag
+# Xenone — Python Dependencies (Slack + Discord)
 
-# Discord API
+# Slack
+slack-bolt>=1.18.0
+slack-sdk>=3.26.0
+
+# Discord (keep if running both bots)
 discord.py>=2.3.2
 
-# AI/ML Libraries
+# AI/ML — torch installed separately via Dockerfile (CPU-only)
 transformers>=4.36.0
 accelerate>=0.25.0
 

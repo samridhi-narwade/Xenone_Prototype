@@ -21,4 +21,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the app
 COPY . .
 
-CMD ["python", "run.py"]
+CMD ["python", "run_both.py"]
